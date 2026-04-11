@@ -5,5 +5,5 @@ test('Day 02 - Git practice', async ({ page }) => {
   await expect(page).toHaveTitle(/Google/);
   console.log('✅ Day 02 done!');
 })
-// Đây là bài tập Day 02 - Git Basics
+// Đây là bài tập Day 02 - Git Basics (sửa lại)
 import { test, expect } from '@playwright/test';
