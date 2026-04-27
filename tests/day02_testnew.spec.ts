@@ -20,7 +20,7 @@ test('TC003 - Menu items hiển thị đủ', async ({ page }) => {
 test('TC004 - Chuyển đến trang Login', async ({ page }) => {
     await page.goto(baseUrl);
   
-    const loginLink = page.getByRole('link', { name: 'Signup1 / Login' });
+    const loginLink = page.getByRole('link', { name: 'Signup / Login' });
     const isVisible = await loginLink.isVisible();
   
     if (isVisible) {
