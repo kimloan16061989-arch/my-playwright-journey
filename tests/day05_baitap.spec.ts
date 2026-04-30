@@ -63,3 +63,5 @@ test('TC-HP-01 - Test trang chủ', async ({ page }) => {
         // Kiểm tra có nút Add to Cart
         await expect(page.getByRole('button', { name: 'Add to cart' })).toBeVisible();
       });
+
+      // sua bai tap
