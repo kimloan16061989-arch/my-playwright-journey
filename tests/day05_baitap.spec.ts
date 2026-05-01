@@ -4,6 +4,7 @@ import { test, expect } from '@playwright/test';
 const BASE = 'https://automationexercise.com';
 
 // ===== BÀI 1: TEST TRANG CHỦ =====
+
 test('TC-HP-01 - Title trang chủ đúng', async ({ page }) => {
   await page.goto(BASE);
   await expect(page).toHaveTitle('Automation Exercise');
@@ -35,8 +36,13 @@ test('TC-HP-03 - Banner/slider hiển thị', async ({ page }) => {
 });
 
 // ===== BÀI 2: TEST TRANG PRODUCTS =====
+
+test.describe('🔐 Products Feature', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(BASE + '/products');
+  });
+
 test('TC-PROD-01 - Trang products load đúng', async ({ page }) => {
-  await page.goto(BASE + '/products');
   await expect(page).toHaveURL(/products/);
   // Có ít nhất 1 sản phẩm
   const products = page.locator('.product-image-wrapper');
@@ -44,7 +50,6 @@ test('TC-PROD-01 - Trang products load đúng', async ({ page }) => {
 });
 
 test('TC-PROD-02 - Tìm kiếm top có kết quả', async ({ page }) => {
-  await page.goto(BASE + '/products');
   await page.fill('#search_product', 'top');
   await page.click('#submit_search');
   const results = page.locator('.product-image-wrapper');
@@ -53,7 +58,6 @@ test('TC-PROD-02 - Tìm kiếm top có kết quả', async ({ page }) => {
 });
 
 test('TC-PROD-03 - Click sản phẩm → xem chi tiết', async ({ page }) => {
-  await page.goto(BASE + '/products');
   // Click 'View Product' của sản phẩm đầu tiên
   await page.locator('.choose a').first().click();
   // Kiểm tra có giá hiển thị
@@ -62,5 +66,6 @@ test('TC-PROD-03 - Click sản phẩm → xem chi tiết', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Add to cart' })).toBeVisible();
 });
 
+});
 // Chạy: npx playwright test tests/day05.spec.ts --headed
 // Xem report: npx playwright show-report
